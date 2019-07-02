@@ -16,6 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @SessionAttributes({"param1", "param2"})
 public class Exam5Controller {
+    @SuppressWarnings("FieldCanBeLocal")
+    private AnimalDao animalDao;
+
+    public Exam5Controller(AnimalDao animalDao) {
+        this.animalDao = animalDao;
+    }
 
     @RequestMapping(path = "/", produces = "text/html; charset=UTF-8")
     public String start() {
@@ -80,10 +86,9 @@ public class Exam5Controller {
 
     @RequestMapping(path = "/animals", produces = "text/html; charset=UTF-8")
     public String animals(Model model) {
-        AnimalDao animalDao = new AnimalDao();
-        animalDao.getList().add(new Animal("Burek", "pies"));
-        animalDao.getList().add(new Animal("Mruczek", "kot"));
-        animalDao.getList().add(new Animal("Krasula", "krowa"));
+//        animalDao.getList().add(new Animal("Burek", "pies"));
+//        animalDao.getList().add(new Animal("Mruczek", "kot"));
+//        animalDao.getList().add(new Animal("Krasula", "krowa"));
 
         StringBuilder sb = new StringBuilder();
         for (Animal animal : animalDao.getList()) {
